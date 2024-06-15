@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram 订阅测试</title>
+    <style>
+        body {
+            background: url('/static/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .messages {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .message-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .message-header time {
+            font-size: 0.9em;
+            color: #bbb;
+        }
+        .message p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Telegram 订阅测试</h1>
+        <h2>最新消息</h2>
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message">
+                <div class="message-header">
+                    <h3>消息ID: {{ message.id }}</h3>
+                    <time>推送时间: {{ message.push_date }}</time>
+                </div>
+                <p>{{ message.text }}</p>
+                <p>获取时间: {{ message.date }}</p>
+                <p>推特 | 网站 | 电报</p>
+                <p>币探监控: <a href="{{ message.monitor_link }}" target="_blank">{{ message.monitor_link }}</a></p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+              
